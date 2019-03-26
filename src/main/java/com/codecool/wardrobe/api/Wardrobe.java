@@ -1,15 +1,21 @@
 package com.codecool.wardrobe.api;
 
-import java.util.List;
+import com.codecool.wardrobe.api.exeptions.InvalidIdExeption;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Wardrobe {
     private static int id;
-    private List<Hanger> hangers;
+    private Map<Integer, Hanger> wardrobe = new HashMap<>();
     private int maxSize;
+    private int currentHangerSize;
+    private static int nextId = 0;
 
-    public Wardrobe(List<Hanger> hangers, int maxSize) {
-        this.hangers = hangers;
+    public Wardrobe(Map<Integer, Hanger> wardrobe, int maxSize, int currentHangerSize) {
+        this.wardrobe = wardrobe;
         this.maxSize = maxSize;
+        this.currentHangerSize = currentHangerSize;
     }
 
     public static int getId() {
@@ -20,12 +26,12 @@ public class Wardrobe {
         Wardrobe.id = id;
     }
 
-    public List<Hanger> getHangers() {
-        return hangers;
+    public Map<Integer, Hanger> getWardrobe() {
+        return wardrobe;
     }
 
-    public void setHangers(List<Hanger> hangers) {
-        this.hangers = hangers;
+    public void setWardrobe(Map<Integer, Hanger> wardrobe) {
+        this.wardrobe = wardrobe;
     }
 
     public int getMaxSize() {
@@ -36,13 +42,58 @@ public class Wardrobe {
         this.maxSize = maxSize;
     }
 
+    public int getCurrentHangerSize() {
+        return currentHangerSize;
+    }
 
+    public void setCurrentHangerSize(int currentHangerSize) {
+        this.currentHangerSize = currentHangerSize;
+    }
+
+    public static int getNextId() {
+        return nextId;
+    }
+
+    public static void setNextId(int nextId) {
+        Wardrobe.nextId = nextId;
+    }
+
+    public void addMultyHanger() {
+        Hanger hanger = new Multihanger(++nextId, null, null);
+        wardrobe.put(hanger.getId(), hanger);
+    }
+
+    public void addSingleHanger() {
+        Hanger hanger = new SingleHanger(++nextId, null);
+        wardrobe.put(hanger.getId(), hanger);
+    }
+
+    public Hanger RemoveHangerById(int inputId) throws InvalidIdExeption {
+        for (Hanger hanger : getWardrobe().values()) {
+            if (hanger.getId() == inputId) {
+                wardrobe.remove(hanger);
+                return hanger;
+            }
+        }
+        throw new InvalidIdExeption("This ID is not exist");
+    }
+
+    public Hanger findHangerById(int inputId) throws InvalidIdExeption {
+        for (Hanger hanger : getWardrobe().values()) {
+            if (hanger.getId() == inputId) {
+                return hanger;
+            }
+        }
+        throw new InvalidIdExeption("This ID is not exist");
+    }
 
     @Override
     public String toString() {
-        return  "Wardrobe{" + id +
-                "hangers=" + hangers +
-                "maxSize=" + maxSize +
+        return "Wardrobe{" +
+                "Id" + id +
+                "wardrobe=" + wardrobe +
+                ", maxSize=" + maxSize +
+                ", currentHangerSize=" + currentHangerSize +
                 '}';
     }
 }

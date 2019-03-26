@@ -3,8 +3,9 @@ package com.codecool.wardrobe.api;
 public class SingleHanger extends Hanger {
     private Cloth cloth;
 
-    public SingleHanger() {
-        cloth = null;
+    public SingleHanger(int id, Cloth cloth) {
+        super(id);
+        this.cloth = cloth;
     }
 
     public Cloth getCloth() {

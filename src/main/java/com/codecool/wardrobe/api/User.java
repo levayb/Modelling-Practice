@@ -1,4 +1,4 @@
-package com.codecool.wardrobe.cmd;
+package com.codecool.wardrobe.api;
 
 import com.codecool.wardrobe.api.*;
 import com.codecool.wardrobe.api.exeptions.HangerIsEmptyExeption;
@@ -41,11 +41,9 @@ public class User {
         if (singleHanger.isEmpty(true) && cloth.getType().equals(ClothType.UPPER)) {
             singleHanger.setCloth(cloth);
             singleHanger.isEmpty(false);
-        }
-        else if (!cloth.getType().equals(ClothType.UPPER)){
+        } else if (!cloth.getType().equals(ClothType.UPPER)) {
             throw new IsNotUpperExeption("Onli upper clothing permitted!4!4!");
-            }
-        else {
+        } else {
             throw new HangerIsFullExeption("Hanger is full");
         }
     }
@@ -94,13 +92,5 @@ public class User {
         } else {
             throw new HangerIsEmptyExeption("There are no clothes on the lower section.");
         }
-    }
-
-    public void addHangertoWardrobe(Hanger hanger) {
-
-    }
-
-    public void removeHangerFromWardrobe(List<Hanger> hangers) {
-
     }
 }

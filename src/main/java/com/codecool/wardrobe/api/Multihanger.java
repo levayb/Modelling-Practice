@@ -4,9 +4,10 @@ public class Multihanger extends Hanger {
     private Cloth upper;
     private Cloth lower;
 
-    public Multihanger() {
-        upper = null;
-        lower = null;
+    public Multihanger(int id, Cloth upper, Cloth lower) {
+        super(id);
+        this.upper = upper;
+        this.lower = lower;
     }
 
     public Cloth getUpper() {
