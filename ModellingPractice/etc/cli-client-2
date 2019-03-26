@@ -1,0 +1,9 @@
+-jar target/green-commitment.jar
+CLI_CLIENT
+2
+localhost
+1234
+3000
+TEMPERATURE
+25
+35

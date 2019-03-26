@@ -1,0 +1,9 @@
+-jar target/green-commitment-jar-with-dependencies.jar
+GUI_CLIENT
+3
+localhost
+1234
+2000
+TEMPERATURE
+-10
+-5

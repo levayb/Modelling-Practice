@@ -1,0 +1,9 @@
+-jar target/green-commitment-jar-with-dependencies.jar
+CLI_CLIENT
+1
+localhost
+1234
+1000
+DISTANCE
+90
+100
